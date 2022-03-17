@@ -1,79 +1,112 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {View, Text, StyleSheet, Image,Dimensions, ScrollView, FlatList} from 'react-native';
 import { getBannerReq } from '../../api/ApiCalls';
-import { GRAY_COLOR, MEDIUM_COLOR } from '../../constant/Color';
+import ButtonComponent from '../../components/ButtonComponent';
+import { GRAY_COLOR, LIGHT_BLUE, MEDIUM_COLOR, MIRAGE, PRIMARY_COLOR, SECONDARY_COLOR } from '../../constant/Color';
 import {TEXT_PARA_BOLD, TEXT_PARA_REG} from '../../constant/TextStyles';
-import Category from './Category';
-import NeverSeen from './NeverSeen';
-import Top25 from './Top25';
-
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons' 
+import { Images } from '../../constant';
 const {width, height} = Dimensions.get('screen')
 export default function HomeScreen() {
-  const [banners, setbanners] = useState([])
-  useEffect(() => {
-    getBannerReq(bannerSuc, bannerFai)
-  }, [])
-  const bannerSuc=(res)=>{
-    console.log("succes")
-    setbanners(res.data)
-  }
-  const bannerFai=()=>{
-    console.log("FAILED")
-  }
+    
+  const navigation = useNavigation()
+
+
+  const TABS=[
+    {
+      "title":"Dashboard",
+      "icon":"dashboard",
+      "route":"Chatroom"
+    },
+    {
+      "title":"Chatrooom",
+      "icon":"mark-chat-unread",
+      "route":"Chatroom"
+    }
+  ]
   return (
     <ScrollView style={styles.container}>
     <View
     style={styles.header}>
-        <Text style={TEXT_PARA_BOLD}>Bharat Bhandar</Text>   
+        <Text style={TEXT_PARA_BOLD}>Admin</Text>
+        <Image style={{
+                  width:30, height:30, resizeMode:"contain"
+              }}  source={Images.appLogo} />   
     </View>
-    <View style={styles.banner} >
-    <FlatList 
-      // horizontal
-       data={banners}
-      // contentContainerStyle={{flex:1}}
-      pagingEnabled
-      horizontal
-      
-      scrollEnabled
-       keyExtractor={item=>item.id}
-      renderItem={({item})=> 
-        <Slide img={item.image[0].url} />
+    <View 
+     style={{ 
+       padding:16,
+     }} >
+     <View 
+     style={{
+       backgroundColor:PRIMARY_COLOR,
+       padding:15,
+       borderRadius:10,
+       margin:5,
+     }}
+     >
+             <Text style={TEXT_PARA_BOLD} >Hii, DEV Inikhiya</Text>
+      <Text style={TEXT_PARA_BOLD}>Good Morning</Text>
+     </View>
 
+      <View
+      style={{
+        flexDirection:"row"
+      }}
+      >
+      {
+       TABS.map(i=> 
+         <ButtonComponent
+         bouncy
+         rippleColor={MIRAGE}
+         onPressAction={()=>navigation.navigate('Chatroom')}
+         styling={{
+           height:120,
+           flex:1,
+           backgroundColor:MIRAGE,
+             margin:5,
+         }}
+         customChild={
+           <View style={ {height:120,
+           flex:1,
+           flexDirection:"column",
+           alignItems:"center",
+           justifyContent:"center",
+           backgroundColor:MIRAGE,
+             margin:5,}} >
+             <MaterialIcons size={38}  name={i.icon} color="#fff"   />
+           <Text style={{...TEXT_PARA_BOLD, marginTop:5 }} >{i.title}</Text>
+           </View>
+         }
+         />
+        )
       }
-      />
+       
+      </View>
     </View>
-    <NeverSeen/>
-    <Top25/>
-    <Category/>
+     <View>
+     </View>
+
     </ScrollView>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor:"#fff",
+    backgroundColor:SECONDARY_COLOR,
 
     
   },
   header:{
       borderBottomWidth:1,
       padding:15,
-      borderBottomColor:GRAY_COLOR
+      flexDirection:"row",
+      justifyContent:"space-between",
+      alignItems:"center",
+      borderBottomColor:GRAY_COLOR,
+      backgroundColor:MIRAGE
   },
-  banner:{
-   width,
-  //  backgroundColor:"#ff0",
-   height:180,
-   marginTop:20
-  }
+
 });
 
-const Slide=(props)=>{
-  return <Image source={{uri:props.img}} style={{
-    width:width-10, 
-    height:170,
-    borderRadius:10,
-     resizeMode:"contain"
-     }}/>
-}

@@ -4,14 +4,10 @@ import {View, Text, StyleSheet, Pressable, Dimensions} from 'react-native';
 import HomeScreen from '../screens/home';
 import {PRIMARY_COLOR, SECONDARY_COLOR} from '../constant/Color';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Feather from 'react-native-vector-icons/Feather'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import SearchScreen from '../screens/search';
-import Cart from '../screens/cart';
-import ProfileScreen from '../screens/Profile';
+
 
 const Tabs = createBottomTabNavigator();
 const width = Dimensions.get('screen').width;
@@ -32,18 +28,18 @@ export default function TabNavigator() {
       <Tabs.Screen
         options={{headerShown: false}}
         name="Search"
-        component={SearchScreen}
+        component={HomeScreen}
       />
 
        <Tabs.Screen
         options={{headerShown: false}}
         name="Cart"
-        component={Cart}
+        component={HomeScreen}
       />  
           <Tabs.Screen
         options={{headerShown: false}}
         name="Profile"
-        component={ProfileScreen}
+        component={HomeScreen}
       />
     </Tabs.Navigator>
   );

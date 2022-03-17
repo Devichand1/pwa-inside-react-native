@@ -1,1 +1,1 @@
-export const login = require('./../assets/login.jpg')
+export const appLogo = require('./../assets/stanLogo.png')
