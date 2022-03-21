@@ -5,12 +5,37 @@ import { MIRAGE, PRIMARY_COLOR } from '../../../constant/Color';
 import { TEXT_PARA_REG } from '../../../constant/TextStyles';
 
 export default function Message({item}) {
+  console.log(item)
     const [currentUser] = useState({
         name: 'John Doe',
       });
   return (
     <TouchableWithoutFeedback>
     <View style={{ marginTop: 6 }}>
+    {
+      item.type==='info'? 
+      <View
+      style={{
+        flexDirection:"row",
+        justifyContent:"center"
+      }}
+      >
+
+      <Text
+      style={{
+        ...TEXT_PARA_REG,
+        textAlign:"center",
+        fontSize:12,
+        backgroundColor:MIRAGE,
+        color:"#fff",
+        width:120,
+        paddingVertical:5,
+        borderRadius:10
+      }}
+      >User Joined</Text>
+      </View>
+
+:
       <View
         style={{
           maxWidth: Dimensions.get('screen').width * 0.8,
@@ -35,7 +60,7 @@ export default function Message({item}) {
             fontSize: 16,
           }}
         >
-          {item.message}
+          {item.data}
         </Text>
         <Text
           style={{
@@ -47,6 +72,7 @@ export default function Message({item}) {
           {item.time}
         </Text>
       </View>
+    }
     </View>
   </TouchableWithoutFeedback>
   )

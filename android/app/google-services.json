@@ -1,0 +1,134 @@
+{
+    "project_info": {
+      "project_number": "104334188353",
+      "project_id": "stan-rn",
+      "storage_bucket": "stan-rn.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:104334188353:android:ebb4415e798c59e24bcbc0",
+          "android_client_info": {
+            "package_name": "com.getstan"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "104334188353-jbvc21cgtsoshu8kafrdqhkeqg6h63p4.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.getstan",
+              "certificate_hash": "f90519c7d212e4dc8de428e18495a40134948931"
+            }
+          },
+          {
+            "client_id": "104334188353-05s0it8msd2bvtpjapjggdqe9i6lh3jp.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAo12Cj252Z5AT1TSW9k3lZ1dA62ThF1jE"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "104334188353-05s0it8msd2bvtpjapjggdqe9i6lh3jp.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "104334188353-0lntb4gatdq6656mojm3f362u9llb39k.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.stan"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:104334188353:android:12ebcf6f5d385bab4bcbc0",
+          "android_client_info": {
+            "package_name": "com.getstandev"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "104334188353-sgr5kjb0144233fjuvv2i5e50u4758lb.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.getstandev",
+              "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            }
+          },
+          {
+            "client_id": "104334188353-05s0it8msd2bvtpjapjggdqe9i6lh3jp.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAo12Cj252Z5AT1TSW9k3lZ1dA62ThF1jE"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "104334188353-05s0it8msd2bvtpjapjggdqe9i6lh3jp.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "104334188353-0lntb4gatdq6656mojm3f362u9llb39k.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.stan"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:104334188353:android:7bb81e479f0e449a4bcbc0",
+          "android_client_info": {
+            "package_name": "com.staninfluencer"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "104334188353-05s0it8msd2bvtpjapjggdqe9i6lh3jp.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAo12Cj252Z5AT1TSW9k3lZ1dA62ThF1jE"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "104334188353-05s0it8msd2bvtpjapjggdqe9i6lh3jp.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "104334188353-0lntb4gatdq6656mojm3f362u9llb39k.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.stan"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

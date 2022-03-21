@@ -18,16 +18,27 @@ import ButtonComponent from '../../components/ButtonComponent';
 import {TEXT_PARA_BOLD} from '../../constant/TextStyles';
 import {PRIMARY_COLOR, MIRAGE} from './../../constant/Color';
 import Message from './component/Message';
+import FirestoreDB from './firebase/index'
+
 export default function ChatScreen({navigation}) {
   const [chatUser] = useState({
     name: 'Robert Henry',
     profile_image: 'https://randomuser.me/api/portraits/men/0.jpg',
     last_seen: 'online',
   });
+  const [chatMsg, setchatMsg] = useState([])
 
   const [currentUser] = useState({
     name: 'John Doe',
   });
+
+
+  useEffect(() => {
+    FirestoreDB.getGroupChatMsg(11).
+    then(e=>{ setchatMsg(e.docs)
+      console.log("okk",e.docs)})
+    .catch(e=>console.log('failed'))
+  }, [])
 
   const [messages, setMessages] = useState([
     {sender: 'John Doe', message: 'Hey there!', time: '6:01 PM'},
@@ -139,8 +150,8 @@ export default function ChatScreen({navigation}) {
           style={{backgroundColor: '#000'}}
           inverted={true}
           showsHorizontalScrollIndicator={false}
-          data={JSON.parse(JSON.stringify(messages)).reverse()}
-          renderItem={({item}) => <Message item={item} />}
+          data={chatMsg}
+          renderItem={({item}) => <Message item={item._data} />}
         />
 
         <View style={{paddingVertical: 10}}>
