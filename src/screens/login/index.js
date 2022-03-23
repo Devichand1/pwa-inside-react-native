@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { loginReq } from '../../api/ApiCalls';
 import { Images } from '../../constant';
 import {
   PRIMARY_COLOR,
@@ -22,9 +24,26 @@ import {TEXT_PARA_BOLD} from '../../constant/TextStyles';
 
 export default function LoginScreen1() {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
+  const [username, setusername] = useState()
+  const [password, setpassword] = useState()
 
 const  handleLogin =()=>{
-    navigation.navigate("Home")
+  const data={
+    username, password, game:"BGMI"
+  }
+  console.log(data)
+
+    loginReq(data, loginSuccess, loginfailed)
+    // navigation.navigate("Home")
+}
+const loginSuccess=(res)=>{
+  dispatch.user.refresh(res)
+      navigation.navigate("Home")
+}
+const loginfailed=(res)=>{
+  console.log("failed",res)
+
 }
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -54,6 +73,8 @@ const  handleLogin =()=>{
                 placeholder="Type here"
                 keyboardType="text"
                 textContentType="text"
+            
+                onChangeText={(e)=> setusername(e) }
               />
             </View>
             <View style={styles.inputBox}>
@@ -64,6 +85,7 @@ const  handleLogin =()=>{
                 autoCapitalize={false}
                 secureTextEntry={true}
                 textContentType="password"
+                onChangeText={e=>setpassword(e)}
               />
             </View>
             <TouchableOpacity onPress={()=>handleLogin()}  style={styles.loginButton}>

@@ -20,109 +20,65 @@ import {PRIMARY_COLOR, MIRAGE} from './../../constant/Color';
 import Message from './component/Message';
 import FirestoreDB from './firebase/index'
 
-export default function ChatScreen({navigation}) {
-  const [chatUser] = useState({
-    name: 'Robert Henry',
-    profile_image: 'https://randomuser.me/api/portraits/men/0.jpg',
-    last_seen: 'online',
-  });
-  const [chatMsg, setchatMsg] = useState([])
+export default function ChatScreen({navigation, route}) {
 
-  const [currentUser] = useState({
-    name: 'John Doe',
-  });
+  const [chatMsg, setchatMsg] = useState([])
+  const [roomId, setroomId] = useState(route.params.roomId)
 
 
   useEffect(() => {
-    FirestoreDB.getGroupChatMsg(11).
-    then(e=>{ setchatMsg(e.docs)
-      console.log("okk",e.docs)})
-    .catch(e=>console.log('failed'))
-  }, [])
+    const messagesListener =FirestoreDB.groupChatMessageListener(
+      roomId,
+      snapListener,
+    );
+    // chatListRef.scrollToEnd();
+    return () => messagesListener();
+  }, []);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  const snapListener = (res) => {
+    setchatMsg([...res.docs.reverse()]);
+  };
+  // useEffect(() => {
+  //   FirestoreDB.getGroupChatMsg(roomId).
+  //   then(e=>{ setchatMsg(e.docs)
+  //     console.log("okk",e.docs)})
+  //   .catch(e=>console.log('failed'))
+  +
 
-  const [messages, setMessages] = useState([
-    {sender: 'John Doe', message: 'Hey there!', time: '6:01 PM'},
-    {
-      sender: 'Robert Henry',
-      message: 'Hello, how are you doing?',
-      time: '6:02 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: 'I am good, how about you?',
-      time: '6:02 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: `😊😇`,
-      time: '6:02 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `Can't wait to meet you.`,
-      time: '6:03 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: `That's great, when are you coming?`,
-      time: '6:03 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `This weekend.`,
-      time: '6:03 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `Around 4 to 6 PM.`,
-      time: '6:04 PM',
-    },
-    {
-      sender: 'John Doe',
-      message: `Great, don't forget to bring me some mangoes.`,
-      time: '6:05 PM',
-    },
-    {
-      sender: 'Robert Henry',
-      message: `Sure!`,
-      time: '6:05 PM',
-    },
-  ]);
+16  // }, [])
 
   const [inputMessage, setInputMessage] = useState('');
 
-  function getTime(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return strTime;
-  }
-
-  function sendMessage() {
-    if (inputMessage === '') {
-      return setInputMessage('');
-    }
-    let t = getTime(new Date());
-    setMessages([
-      ...messages,
-      {
-        sender: currentUser.name,
-        message: inputMessage,
-        time: t,
-      },
-    ]);
-    setInputMessage('');
-  }
 
   const handleBack=()=>{
     navigation.pop()
   }
 
-  useEffect(() => {}, []);
+  const handleSendMsg = () => {
+    const message =inputMessage;
+    if (message === null || message == '' || message == undefined) {
+      return null;
+    } else {
+      const data = {
+
+        sentAt:  new Date().valueOf(),
+        sender: {
+          image: '',
+          userId: 22,
+          userName: "dev inikhiya",
+          profileId:"devinikhiya",
+          isAdmin:true
+        },
+        data: inputMessage,
+        type: 'msg',
+      };
+      console.log(data);
+      FirestoreDB.sendMsgToGroupChat(roomId, data)
+        .then((res) => console.log('chala gy'))
+        .catch((res) => console.log(res));
+      // setreplying()
+      // setmsgText();
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -160,15 +116,16 @@ export default function ChatScreen({navigation}) {
               defaultValue={inputMessage}
               style={styles.messageInput}
               placeholder="Message"
+              value={inputMessage}
               onChangeText={(text) => setInputMessage(text)}
               onSubmitEditing={() => {
-                sendMessage();
+                handleSendMsg();
               }}
             />
             <TouchableOpacity
               style={styles.messageSendView}
               onPress={() => {
-                sendMessage();
+                handleSendMsg();
               }}>
               <FontAwesome name="send" type="material" />
             </TouchableOpacity>

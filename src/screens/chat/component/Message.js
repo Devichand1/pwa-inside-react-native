@@ -5,10 +5,19 @@ import { MIRAGE, PRIMARY_COLOR } from '../../../constant/Color';
 import { TEXT_PARA_REG } from '../../../constant/TextStyles';
 
 export default function Message({item}) {
-  console.log(item)
     const [currentUser] = useState({
         name: 'John Doe',
       });
+      function getTime(date) {
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+      }
   return (
     <TouchableWithoutFeedback>
     <View style={{ marginTop: 6 }}>
@@ -39,18 +48,18 @@ export default function Message({item}) {
       <View
         style={{
           maxWidth: Dimensions.get('screen').width * 0.8,
-          backgroundColor:item.sender === currentUser.name? PRIMARY_COLOR : MIRAGE ,
+          backgroundColor:item.sender.isAdmin? PRIMARY_COLOR : MIRAGE ,
           alignSelf:
-            item.sender === currentUser.name
+            item.sender.isAdmin
               ? 'flex-end'
               : 'flex-start',
           marginHorizontal: 10,
           padding: 10,
           borderRadius: 8,
           borderBottomLeftRadius:
-            item.sender === currentUser.name ? 8 : 0,
+            item.sender.isAdmin ? 8 : 0,
           borderBottomRightRadius:
-            item.sender === currentUser.name ? 0 : 8,
+            item.sender.isAdmin ? 0 : 8,
         }}
       >
         <Text
@@ -69,7 +78,7 @@ export default function Message({item}) {
             alignSelf: 'flex-end',
           }}
         >
-          {item.time}
+          {getTime(new Date(item.sentAt))}
         </Text>
       </View>
     }

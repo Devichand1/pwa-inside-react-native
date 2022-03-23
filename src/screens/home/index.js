@@ -7,17 +7,17 @@ import { GRAY_COLOR, LIGHT_BLUE, MEDIUM_COLOR, MIRAGE, PRIMARY_COLOR, SECONDARY_
 import {TEXT_PARA_BOLD, TEXT_PARA_REG} from '../../constant/TextStyles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons' 
 import { Images } from '../../constant';
+import { useSelector } from 'react-redux';
 const {width, height} = Dimensions.get('screen')
 export default function HomeScreen() {
-    
+     const user = useSelector(state=>state.user)
   const navigation = useNavigation()
-
-
   const TABS=[
     {
       "title":"Dashboard",
       "icon":"dashboard",
-      "route":"Chatroom"
+      "route":"Chatroom",
+       params:{roomId:user.chatroomId}
     },
     {
       "title":"Chatrooom",
@@ -46,7 +46,7 @@ export default function HomeScreen() {
        margin:5,
      }}
      >
-             <Text style={TEXT_PARA_BOLD} >Hii, DEV Inikhiya</Text>
+             <Text style={TEXT_PARA_BOLD} >Hii, {user.user.username}</Text>
       <Text style={TEXT_PARA_BOLD}>Good Morning</Text>
      </View>
 
@@ -60,7 +60,10 @@ export default function HomeScreen() {
          <ButtonComponent
          bouncy
          rippleColor={MIRAGE}
-         onPressAction={()=>navigation.navigate('Chatroom')}
+         onPressAction={()=>navigation.navigate({
+           name:i.route,
+           params:{roomId:user.chatroomId}
+         })}
          styling={{
            height:120,
            flex:1,
