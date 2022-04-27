@@ -1,7 +1,7 @@
 export const WHITE = '#FFF';
 export const BLACK = '#000';
 export const PRIMARY_COLOR = '#621DF2';
-export const SECONDARY_COLOR = BLACK;
+export const SECONDARY_COLOR = '#fff';
 export const TEXT_COLOR = WHITE;
 export const TEXT_COLOR_YELLOW = '#F6D47F';
 export const TEXT_COLOR_SEC = '#949594';
