@@ -137,6 +137,15 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+    manifestPlaceholders = [
+            hostName       : "www.main.d31ztmznf777d4.amplifyapp.com/",		//replace with the url of your PWA
+            defaultUrl     : "https://main.d31ztmznf777d4.amplifyapp.com/",		//replace with the url of your PWA
+            assetStatements: '[{ "relation": ["delegate_permission/common.handle_all_urls"], ' +
+                    '"target": {"namespace": "web", "site": "https://main.d31ztmznf777d4.amplifyapp.com/"}}]'
+    ] 	//replace with the url of your PWA
+
+    buildConfigField "String", "DEFAULT_URL", "\"${manifestPlaceholders.defaultUrl}\""
+    multiDexEnabled true
     }
     splits {
         abi {
@@ -194,6 +203,8 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
+     implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.0.1'
+ 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

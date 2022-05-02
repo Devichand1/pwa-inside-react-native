@@ -1,6 +1,7 @@
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import React from 'react';;
 import HomeScreen from '../screens/home';
+import { WebView } from '../screens/home/Webview';
 import Splash from '../Splash';
 
 const Stack = createStackNavigator();
@@ -8,12 +9,17 @@ const Routes=[
 {
   name:"Home",
   component:HomeScreen
-}
+},
+{
+  name:"webview",
+  component:WebView
+},
+
 ]
 const StackNavigator = () => {
   return (
     <Stack.Navigator 
-    initialRouteName="Home"
+    initialRouteName="webview"
     >
       {
         Routes.map(i=>
