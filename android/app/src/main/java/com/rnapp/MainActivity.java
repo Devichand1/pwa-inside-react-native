@@ -1,4 +1,4 @@
-package com.staninfluencer;
+package com.rnapp;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
@@ -11,7 +11,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "staninfluencer";
+    return "rnapp";
   }
   @Override
 protected void onCreate(Bundle savedInstanceState) {

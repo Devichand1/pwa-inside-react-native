@@ -19,7 +19,7 @@ const Routes=[
 const StackNavigator = () => {
   return (
     <Stack.Navigator 
-    initialRouteName="webview"
+    initialRouteName="Home"
     >
       {
         Routes.map(i=>

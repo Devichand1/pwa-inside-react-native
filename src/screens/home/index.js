@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import {View, Text, StyleSheet, Image,Dimensions, ScrollView, FlatList} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image,Dimensions, ScrollView, FlatList} from 'react-native';
 import { GRAY_COLOR, GREY_CITY, MIRAGE, PRIMARY_COLOR, SECONDARY_COLOR } from '../../constant/Color';
 import {TEXT_PARA_BOLD} from '../../constant/TextStyles';
 
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
     <View
@@ -28,13 +29,17 @@ export default function HomeScreen() {
       <Text style={TEXT_PARA_BOLD}>Good Morning</Text>
      </View>
 
-      <View
+      <TouchableOpacity
+      onPress={()=>navigation.navigate("webview")}
       style={{
-        flexDirection:"row"
+        flexDirection:"row",
+        backgroundColor:"#000",
+        padding:20,
+        borderRadius:8
       }}
       >
-       
-      </View>
+       <Text style={TEXT_PARA_BOLD} >launch PWA</Text>
+      </TouchableOpacity>
     </View>
      <View>
      </View>
