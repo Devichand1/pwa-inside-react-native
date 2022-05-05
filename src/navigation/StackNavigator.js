@@ -19,12 +19,13 @@ const Routes=[
 const StackNavigator = () => {
   return (
     <Stack.Navigator 
-    initialRouteName="Home"
+    initialRouteName="webview"
     >
       {
-        Routes.map(i=>
+        Routes.map((i, index)=>
         <Stack.Screen
         name={i.name}
+        key={`routes-${index}`}
         options={{
           headerShown: false,
           ...TransitionPresets.SlideFromRightIOS,

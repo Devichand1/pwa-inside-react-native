@@ -138,8 +138,8 @@ android {
         versionCode 1
         versionName "1.0"
     manifestPlaceholders = [
-            hostName       : "www.main.d31ztmznf777d4.amplifyapp.com/",		//replace with the url of your PWA
-            defaultUrl     : "https://main.d31ztmznf777d4.amplifyapp.com/",		//replace with the url of your PWA
+            hostName       : "www.main.d31ztmznf777d4.amplifyapp.com",		//replace with the url of your PWA
+            defaultUrl     : "https://main.d31ztmznf777d4.amplifyapp.com",		//replace with the url of your PWA
             assetStatements: '[{ "relation": ["delegate_permission/common.handle_all_urls"], ' +
                     '"target": {"namespace": "web", "site": "https://main.d31ztmznf777d4.amplifyapp.com/"}}]'
     ] 	//replace with the url of your PWA
