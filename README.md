@@ -14,6 +14,9 @@ This is a android example of loading a react pwa inside react-native project
   <li><span>&#10004;</span> Mobile Vibration</li>
   <li><span>&#10004;</span> Phone Contact</li>
   <li><span>&#10004;</span> Network Info</li>
+  <li><span>&#10004;</span> Mobile App Shortcuts</li>
+  <li><span>&#10004;</span> Streaming Local View</li>
+  <li><span>&#10004;</span> SCAN QR code with live camera</li>
 </ol>
 
 
